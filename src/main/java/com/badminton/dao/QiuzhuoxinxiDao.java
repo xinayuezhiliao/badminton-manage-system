@@ -1,0 +1,13 @@
+package com.badminton.dao;
+
+import com.badminton.entity.Qiuzhuoxinxi;
+import java.sql.SQLException;
+import java.util.List;
+
+public interface QiuzhuoxinxiDao {
+    List<Qiuzhuoxinxi> list() throws SQLException;
+    int add(Qiuzhuoxinxi qiuzhuoxinxi) throws SQLException;
+    int update(Qiuzhuoxinxi qiuzhuoxinxi) throws SQLException;
+    int delete(Integer id) throws SQLException;
+    Qiuzhuoxinxi getById(Integer id) throws SQLException;
+}
