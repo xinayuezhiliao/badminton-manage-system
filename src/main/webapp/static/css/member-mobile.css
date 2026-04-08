@@ -1,0 +1,627 @@
+/* ====================================
+   羽毛球馆管理系统 - 会员端移动端适配样式
+   第一阶段：核心布局改造
+   ==================================== */
+
+/* ========== 基础重置与通用样式 ========== */
+.member-page * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.member-page body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.member-page img {
+    border: none;
+    max-width: 100%;
+}
+
+.member-page a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.member-page ul, .member-page li {
+    list-style: none;
+}
+
+/* ========== 顶部导航栏（手机端优化） ========== */
+.member-page .top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(135deg, #16a085 0%, #1abc9c 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.member-page .header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* 汉堡按钮 - 44x44px 最小点击区域 */
+.member-page .hamburger-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 8px;
+    transition: all 0.3s ease;
+}
+
+.member-page .hamburger-btn:active {
+    transform: scale(0.95);
+    background-color: rgba(255,255,255,0.1);
+}
+
+.member-page .hamburger-btn span {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.member-page .hamburger-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.member-page .hamburger-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.member-page .hamburger-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.member-page .site-title {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.member-page .header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.member-page .user-info {
+    color: white;
+    font-size: 14px;
+    display: none; /* 手机端隐藏 */
+}
+
+/* 退出按钮 - 44px 最小点击区域 */
+.member-page .logout-btn {
+    padding: 10px 16px;
+    min-height: 44px;
+    background-color: rgba(255,255,255,0.2);
+    color: white;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.member-page .logout-btn:hover {
+    background-color: rgba(255,255,255,0.3);
+}
+
+.member-page .logout-btn:active {
+    transform: scale(0.95);
+}
+
+/* ========== 侧边栏（移动端抽屉式） ========== */
+.member-page .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.member-page .sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.member-page .sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100vh;
+    background-color: #339999;
+    z-index: 999;
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.member-page .sidebar.active {
+    transform: translateX(280px);
+}
+
+.member-page .sidebar-header {
+    padding: 20px 15px;
+    background-color: rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.member-page .sidebar-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+}
+
+.member-page .user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.member-page .user-details h3 {
+    font-size: 16px;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.member-page .user-details p {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.member-page .sidebar-menu {
+    padding: 15px 0;
+}
+
+.member-page .menu-group {
+    margin-bottom: 20px;
+}
+
+.member-page .menu-title {
+    padding: 12px 20px;
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.member-page .menu-item {
+    display: block;
+    padding: 14px 20px;
+    color: white;
+    font-size: 16px;
+    transition: all 0.3s;
+    border-left: 3px solid transparent;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+}
+
+.member-page .menu-item:hover {
+    background-color: rgba(255,255,255,0.1);
+    border-left-color: white;
+}
+
+.member-page .menu-item:active {
+    background-color: rgba(255,255,255,0.15);
+    transform: translateX(4px);
+}
+
+.member-page .menu-item.active {
+    background-color: rgba(255,255,255,0.15);
+    border-left-color: white;
+}
+
+.member-page .menu-icon {
+    margin-right: 10px;
+    font-size: 18px;
+    width: 24px;
+    text-align: center;
+}
+
+/* ========== 主内容区 ========== */
+.member-page .main-container {
+    margin-top: 50px;
+    padding: 15px;
+    min-height: calc(100vh - 50px);
+}
+
+.member-page .content-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ========== 卡片网格布局（响应式） ========== */
+.member-page .card-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* 手机端 1 列 */
+    gap: 15px;
+    margin-top: 15px;
+}
+
+/* 平板：2 列 */
+@media (min-width: 768px) {
+    .member-page .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+/* PC：4 列 */
+@media (min-width: 1024px) {
+    .member-page .card-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+}
+
+/* ========== 数据卡片样式 ========== */
+.member-page .data-card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+}
+
+.member-page .data-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+.member-page .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.member-page .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.member-page .card-status {
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.member-page .status-free {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.member-page .status-booked {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.member-page .card-body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.member-page .card-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.member-page .card-label {
+    font-size: 12px;
+    color: #888;
+    font-weight: 500;
+}
+
+.member-page .card-value {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+.member-page .card-footer {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* ========== 搜索框样式 ========== */
+.member-page .search-box {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 15px;
+}
+
+.member-page .search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.member-page .form-group {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.member-page .form-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #555;
+}
+
+.member-page .form-input {
+    width: 100%;
+    height: 44px;
+    padding: 0 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.member-page .form-input:focus {
+    outline: none;
+    border-color: #16a085;
+    box-shadow: 0 0 0 3px rgba(22, 160, 133, 0.1);
+}
+
+/* ========== 按钮样式 ========== */
+.member-page .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+    text-align: center;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.member-page .btn-primary {
+    background: linear-gradient(135deg, #16a085, #1abc9c);
+    color: white;
+}
+
+.member-page .btn-primary:hover {
+    box-shadow: 0 4px 12px rgba(22, 160, 133, 0.3);
+}
+
+.member-page .btn-primary:active {
+    transform: scale(0.98);
+}
+
+.member-page .btn-secondary {
+    background-color: #95a5a6;
+    color: white;
+}
+
+.member-page .btn-secondary:active {
+    background-color: #7f8c8d;
+}
+
+/* ========== 表格样式 ========== */
+.member-page .table-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    overflow-x: auto;
+    margin-bottom: 15px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.member-page .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.member-page .data-table thead {
+    background: linear-gradient(135deg, #16a085, #1abc9c);
+    color: white;
+}
+
+.member-page .data-table th {
+    padding: 12px 10px;
+    text-align: center;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.member-page .data-table td {
+    padding: 12px 10px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.member-page .data-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* ========== 分页样式 ========== */
+.member-page .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.member-page .pagination a {
+    padding: 10px 20px;
+    background: white;
+    color: #16a085;
+    border: 2px solid #16a085;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+}
+
+.member-page .pagination a:hover {
+    background: #16a085;
+    color: white;
+}
+
+.member-page .pagination a:active {
+    transform: scale(0.95);
+}
+
+/* ========== 响应式适配规则 ========== */
+
+/* 手机端 (<768px) */
+@media (max-width: 767px) {
+    .member-page .main-container {
+        padding: 10px;
+    }
+    
+    .member-page .user-info {
+        display: none;
+    }
+    
+    .member-page .search-form {
+        flex-direction: column;
+    }
+    
+    .member-page .form-group {
+        width: 100%;
+    }
+    
+    .member-page .card-grid {
+        grid-template-columns: 1fr; /* 手机端 1 列 */
+    }
+    
+    .member-page .data-table {
+        font-size: 13px;
+        min-width: 600px; /* 保证表格可读性 */
+    }
+    
+    .member-page .data-table th,
+    .member-page .data-table td {
+        padding: 8px 6px;
+    }
+    
+    .member-page .card-body {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 平板端 (768px-1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .member-page .user-info {
+        display: block;
+    }
+    
+    .member-page .card-grid {
+        grid-template-columns: repeat(2, 1fr); /* 平板 2 列 */
+    }
+}
+
+/* PC 端 (>=1024px) */
+@media (min-width: 1024px) {
+    .member-page .hamburger-btn {
+        display: none; /* PC 端隐藏汉堡按钮 */
+    }
+    
+    .member-page .sidebar {
+        position: relative;
+        left: 0;
+        transform: none;
+        width: 200px;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .member-page .sidebar-overlay {
+        display: none;
+    }
+    
+    .member-page .main-container {
+        margin-left: 200px;
+    }
+    
+    .member-page .card-grid {
+        grid-template-columns: repeat(4, 1fr); /* PC 端 4 列 */
+    }
+    
+    .member-page .user-info {
+        display: block;
+    }
+}
+
+/* ========== 标签中文化 ========== */
+.member-page .label-member {
+    color: #16a085;
+    font-weight: 600;
+}
+
+.member-page .label-vip {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
